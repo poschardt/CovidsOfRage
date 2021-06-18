@@ -10,23 +10,14 @@ public class Player : MonoBehaviour
 
 
     private bool OnGround;
-    private string currentAnimation;
     private float currentSpeed;
     private Animator animator;
     private Rigidbody rb;
     private float xAxis;
     private float zAxis;
-    private bool jump;
-    private bool run;
+
     private bool facingRight = true;
-
-
-    //Animations states
-    const string PLAYER_IDLE = "Idle";
-    const string PLAYER_WALK = "Walk";
-    const string PLAYER_RUN = "Run";
-    const string PLAYER_JUMP = "Jump";
-    const string PLAYER_FALL = "Fall";
+    private bool jump;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +25,6 @@ public class Player : MonoBehaviour
         currentSpeed = walkSpeed;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        run = false;
     }
 
     // Update is called once per frame
@@ -49,17 +39,19 @@ public class Player : MonoBehaviour
             jump = true;
         }
 
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            animator.SetTrigger("Attack");
+        }
+
+
+
         //Corrida - Tecla ainda não decidida (Talvez 2x direção seja uma boa)
-        run = false;
     }
 
     private void FixedUpdate()
     {
-        Vector2 vel = new Vector2(0, rb.velocity.y);
 
-        //Determinando velocidade (Corrida não implementada)
-        currentSpeed = walkSpeed;
-        print(zAxis);
 
         if (xAxis > 0 && !facingRight)//Direita
         {
@@ -72,6 +64,14 @@ public class Player : MonoBehaviour
 
         }
 
+        //Pulo
+        if (jump)
+        {
+            jump = false;
+            OnGround = false;
+            rb.AddForce(Vector3.up * jumpForce);
+        }
+
         //Impedir o movimento do eixo z caso o personagem esteja no ar
         if (!OnGround)
             zAxis = 0;
@@ -79,34 +79,13 @@ public class Player : MonoBehaviour
         //Movimentação do personagem 
         rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y, zAxis * currentSpeed);
 
-        if (jump)
-        {
-            jump = false;
-            OnGround = false;
-
-            rb.AddForce(Vector3.up * jumpForce);
-        }
-
-
+        //Caso estiver no  chao, ativar animação de velocidade (Não entendi o motivo de passar a velocidade para animação)
         if (OnGround)
         {
-            if (rb.velocity.x != 0f)
-                ChangeAnimationState(PLAYER_WALK);
-            else if (rb.velocity.x == 0)
-                ChangeAnimationState(PLAYER_IDLE);
-
+            animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         }
-        else
-        {
-            print("entrei aqui");
-            if (rb.velocity.y > 0f)
-                ChangeAnimationState(PLAYER_JUMP);
-            else if (rb.velocity.y < 0f)
-                ChangeAnimationState(PLAYER_FALL);
-
-        }
-
-
+        animator.SetBool("onGround", OnGround);
+        animator.SetFloat("ySpeed", rb.velocity.y);
 
     }
 
@@ -125,9 +104,6 @@ public class Player : MonoBehaviour
         transform.localScale = scale;
     }
 
-    private void ChangeAnimationState(string state)
-    {
-        animator.Play(state);
-        currentAnimation = state;
-    }
+
+   
 }
