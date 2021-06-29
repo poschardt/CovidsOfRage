@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class FlyingEyeController : MonoBehaviour
 {
-    private Rigidbody2D rbEye;
-    private SpriteRenderer spRenderer;
     public GameObject player;
+    public GameObject enemy;
+    public GameObject ShotRange;
+    public GameObject DiveRange;
 
-    
+    private SpriteRenderer spRenderer;
+    private Rigidbody2D rbEye;
+    private CircleCollider2D shotCollider;
+    private CircleCollider2D diveCollider;
 
     void Start()
     {
-        rbEye = GetComponent<Rigidbody2D>();
-        spRenderer = GetComponent<SpriteRenderer>();
+        rbEye = enemy.GetComponent<Rigidbody2D>();
+        spRenderer = enemy.GetComponent<SpriteRenderer>();
+        shotCollider = ShotRange.GetComponent<CircleCollider2D>();
+        diveCollider = DiveRange.GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -33,5 +39,15 @@ public class FlyingEyeController : MonoBehaviour
             if (spRenderer.flipY)
                 spRenderer.flipY = false;
         }
+    }
+
+    public void CollisionDetected(DashRadiusController childScript)
+    {
+        Debug.Log("collided dash");
+    }
+
+    public void CollisionDetected(ShotRadiusController childScript)
+    {
+        Debug.Log("shot collided");
     }
 }
