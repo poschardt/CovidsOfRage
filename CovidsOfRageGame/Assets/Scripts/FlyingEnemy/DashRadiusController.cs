@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class DashRadiusController : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             transform.parent.GetComponent<FlyingEyeController>().CollisionDetected(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            transform.parent.GetComponent<FlyingEyeController>().CollisionLeave(this);
         }
     }
 }
