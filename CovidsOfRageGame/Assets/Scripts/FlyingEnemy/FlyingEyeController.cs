@@ -8,9 +8,13 @@ public class FlyingEyeController : MonoBehaviour
     public GameObject enemy;
     public GameObject ShotRange;
     public GameObject DiveRange;
+    public GameObject HitRange;
 
     private SpriteRenderer spRenderer;
     private Rigidbody2D rbEye;
+    private Animator anim;
+
+    private CapsuleCollider2D hitCollider;
     private CircleCollider2D shotCollider;
     private CircleCollider2D diveCollider;
 
@@ -20,6 +24,10 @@ public class FlyingEyeController : MonoBehaviour
     private bool insideDashRadius;
 
     private bool shoot;
+    private bool isShooting;
+    private bool isDead;
+
+    private bool meleeAtk;
 
     public bool allowMovement;
 
@@ -27,12 +35,18 @@ public class FlyingEyeController : MonoBehaviour
     public GameObject tiroPrefab;
     public float delayTiro;
 
+    [Header("Velocidade Dash")]
+    public float velocidadeDash;
+
     void Start()
     {
         _gm = FindObjectOfType<GameManager>() as GameManager;
 
-        rbEye = enemy.GetComponent<Rigidbody2D>();
+        rbEye = this.GetComponent<Rigidbody2D>();
+        anim = enemy.GetComponent<Animator>();
         spRenderer = enemy.GetComponent<SpriteRenderer>();
+
+        hitCollider = HitRange.GetComponent<CapsuleCollider2D>();
         shotCollider = ShotRange.GetComponent<CircleCollider2D>();
         diveCollider = DiveRange.GetComponent<CircleCollider2D>();
     }
@@ -40,41 +54,67 @@ public class FlyingEyeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //controle de estado do inimigo  
-        if (insideDashRadius || insideShotRadius)
+        if (!isDead)
         {
-            ApontarPlayer();
-            allowMovement = false;
-
-            if(insideShotRadius && !insideDashRadius)
+            if (!meleeAtk)
             {
-                shoot = true;
+                //controle de estado do inimigo  
+                if (insideDashRadius || insideShotRadius)
+                {
+
+                    allowMovement = false;
+
+                    if (insideShotRadius && !insideDashRadius)
+                    {
+                        ApontarPlayer();
+                        shoot = true;
+                    }
+
+                    if (insideDashRadius)
+                    {
+                        shoot = false;
+                        meleeAtk = true;
+                    }
+                }
+                else
+                {
+                    ResetaRotacao();
+                    allowMovement = true;
+                    shoot = false;
+                }
+
+                if (shoot && !isShooting)
+                    StartCoroutine("Shoot");
+            }
+
+            if (meleeAtk)
+            {
+                rbEye.velocity = this.transform.right * velocidadeDash;
             }
         }
         else
         {
-            ResetaRotacao();
-            allowMovement = true;
-            shoot = false;
+            rbEye.velocity = this.transform.right * 0f;
         }
-
-        if (shoot)
-            StartCoroutine("Shoot");
+        
     }
 
     IEnumerator Shoot()
     {
+        isShooting = true;
+        anim.SetTrigger("Shoot");
         //dispara tiro
-        GameObject bulletInstance = Instantiate(tiroPrefab) as GameObject;
+        GameObject bulletInstance = Instantiate(tiroPrefab, this.transform.position, this.transform.localRotation) as GameObject;
         Rigidbody2D rb2d = bulletInstance.GetComponent<Rigidbody2D>();
 
-        rb2d.velocity = new Vector2(1f, 1);
+        rb2d.velocity = this.transform.right * 3f;
 
         yield return new WaitForSeconds(delayTiro);
+        isShooting = false;
 
         //verificando se devemos atirar novamente
-        if(shoot)
-            StartCoroutine("Shoot");
+        //if(shoot)
+        //    StartCoroutine("Shoot");
     }
 
     private void ResetaRotacao()
@@ -119,6 +159,14 @@ public class FlyingEyeController : MonoBehaviour
     public void CollisionLeave(ShotRadiusController shotColliderScript)
     {
         insideShotRadius = false;
+    }
+
+    public void CollisionDetected(HitRadiusController hitColliderScript)
+    {
+        anim.SetTrigger("Grounded");
+        rbEye.transform.localRotation = new Quaternion(0f, 180f, 0f, 0f);
+        rbEye.velocity = this.transform.right * 0f;
+        isDead = true;
     }
     #endregion
 

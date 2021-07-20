@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2181391274863139894}
   - component: {fileID: 2181391274863139890}
   - component: {fileID: 2181391274863139889}
+  - component: {fileID: 1061423947}
   m_Layer: 0
   m_Name: FlyEye_Shot
   m_TagString: EnemyShot
@@ -141,3 +142,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.16, y: 0.16}
   m_Direction: 0
+--- !u!114 &1061423947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2181391274863139893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e5fc39ca6e4a147979a7be97779807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
