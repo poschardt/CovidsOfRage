@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         //Movimentação do personagem 
         rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y, zAxis * currentSpeed);
 
-        //Caso estiver no  chao, ativar animação de velocidade (Não entendi o motivo de passar a velocidade para animação)
+        //Caso estiver no  chao, ativar animação de velocidade 
         if (OnGround)
         {
             animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
