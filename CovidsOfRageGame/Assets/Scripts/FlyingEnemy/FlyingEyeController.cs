@@ -1,9 +1,10 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEyeController : MonoBehaviour
+public class FlyingEyeController : Enemy
 {
     public GameObject enemy;
     public GameObject ShotRange;
@@ -11,8 +12,8 @@ public class FlyingEyeController : MonoBehaviour
     public GameObject HitRange;
 
     private SpriteRenderer spRenderer;
-    private Rigidbody2D rbEye;
-    private Animator anim;
+    //private Rigidbody2D rb;
+ //   private Animator anim;
 
     private CapsuleCollider2D hitCollider;
     private CircleCollider2D shotCollider;
@@ -25,7 +26,7 @@ public class FlyingEyeController : MonoBehaviour
 
     private bool shoot;
     private bool isShooting;
-    private bool isDead;
+ //   private bool isDead;
 
     private bool meleeAtk;
 
@@ -42,7 +43,7 @@ public class FlyingEyeController : MonoBehaviour
     {
         _gm = FindObjectOfType<GameManager>() as GameManager;
 
-        rbEye = this.GetComponent<Rigidbody2D>();
+        rb = this.GetComponent<Rigidbody2D>();
         anim = enemy.GetComponent<Animator>();
         spRenderer = enemy.GetComponent<SpriteRenderer>();
 
@@ -54,6 +55,7 @@ public class FlyingEyeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isDead = true;
         if (!isDead)
         {
             if (!meleeAtk)
@@ -89,12 +91,12 @@ public class FlyingEyeController : MonoBehaviour
 
             if (meleeAtk)
             {
-                rbEye.velocity = this.transform.right * velocidadeDash;
+                rb.velocity = this.transform.right * velocidadeDash;
             }
         }
         else
         {
-            rbEye.velocity = this.transform.right * 0f;
+            rb.velocity = this.transform.right * 0f;
         }
         
     }
@@ -164,8 +166,8 @@ public class FlyingEyeController : MonoBehaviour
     public void CollisionDetected(HitRadiusController hitColliderScript)
     {
         anim.SetTrigger("Grounded");
-        rbEye.transform.localRotation = new Quaternion(0f, 180f, 0f, 0f);
-        rbEye.velocity = this.transform.right * 0f;
+        rb.transform.localRotation = new Quaternion(0f, 180f, 0f, 0f);
+        rb.velocity = this.transform.right * 0f;
         isDead = true;
     }
     #endregion

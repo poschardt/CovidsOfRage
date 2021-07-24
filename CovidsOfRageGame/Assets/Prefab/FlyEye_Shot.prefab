@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2181391274863139890}
   - component: {fileID: 2181391274863139889}
   - component: {fileID: 1061423947}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FlyEye_Shot
   m_TagString: EnemyShot
   m_Icon: {fileID: 0}
