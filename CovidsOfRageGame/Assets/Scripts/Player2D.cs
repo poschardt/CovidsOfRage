@@ -1,3 +1,4 @@
+using Assets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,9 @@ public class Player2D : MonoBehaviour
     public int maxHealth = 10;
     private int currentHealth;
     private bool isDead = false;
+
+    public string playerName;
+    public Sprite playerImage;
 
     // Start is called before the first frame update
     void Start()
@@ -63,48 +67,51 @@ public class Player2D : MonoBehaviour
         {
             animator.SetTrigger("Attack");
         }
-    
 
+        isDead = currentHealth <= 0 ? true : false;
 
         //Corrida - Tecla ainda não decidida (Talvez 2x direção seja uma boa)
     }
 
     private void FixedUpdate()
     {
-        if (xAxis > 0 && !facingRight)//Direita
+        if (!isDead)
         {
-            Flip();
-        }
-        else if (xAxis < 0 && facingRight)//Esquerda
-        {
-            Flip();
-        }
 
-        //Pulo
-        if (jump)
-        {
-            jump = false;
-            OnGround = false;
-            rb.AddForce(Vector3.up * jumpForce);
-        }
+            if (xAxis > 0 && !facingRight)//Direita
+            {
+                Flip();
+            }
+            else if (xAxis < 0 && facingRight)//Esquerda
+            {
+                Flip();
+            }
 
-        //Impedir o movimento do eixo z caso o personagem esteja no ar
-        if (!OnGround)
-            zAxis = 0;
+            //Pulo
+            if (jump)
+            {
+                jump = false;
+                OnGround = false;
+                rb.AddForce(Vector3.up * jumpForce);
+            }
 
-        //Movimentação do personagem 
-        if (!healing)
-            rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y,0);
-        else
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        //Caso estiver no  chao, ativar animação de velocidade 
-        if (OnGround)
-        {
-            print(rb.velocity.x);
-            animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+            //Impedir o movimento do eixo z caso o personagem esteja no ar
+            if (!OnGround)
+                zAxis = 0;
+
+            //Movimentação do personagem 
+            if (!healing)
+                rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y, 0);
+            else
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            //Caso estiver no  chao, ativar animação de velocidade 
+            if (OnGround)
+            {
+                animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+            }
+            animator.SetBool("onGround", OnGround);
+            animator.SetFloat("ySpeed", rb.velocity.y);
         }
-        animator.SetBool("onGround", OnGround);
-        animator.SetFloat("ySpeed", rb.velocity.y);
 
     }
 
@@ -131,8 +138,8 @@ public class Player2D : MonoBehaviour
         if (!isDead)
         {
             currentHealth -= damage;
-      //      anim.SetTrigger("HitDamage");
-      //      FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
+            //    anim.SetTrigger("HitDamage");
+            FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
         }
     }
 

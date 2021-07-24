@@ -12,10 +12,16 @@ namespace Assets.Scripts
         protected int currentHealth;
         public int maxHealth;
         protected bool isDead = false;
-        private bool damaged = false;
+        protected bool damaged = false;
 
         protected Animator anim;
         protected Rigidbody2D rb;
+
+        public string enemyName;
+        public Sprite enemyImage;
+
+
+
         public void TookDamage(int damage)
         {
             if (!isDead)
@@ -23,7 +29,7 @@ namespace Assets.Scripts
                 damaged = true;
                 currentHealth -= damage;
               //  anim.SetTrigger("HitDamage");
-             //   FindObjectOfType<UIManager>().UpdateEnemyUI(maxHealth, currentHealth, enemyName, enemyImage);
+                FindObjectOfType<UIManager>().UpdateEnemyUI(maxHealth, currentHealth, enemyName, enemyImage);
                 if (currentHealth <= 0)
                 {
                     isDead = true;

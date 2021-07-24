@@ -41,6 +41,7 @@ public class FlyingEyeController : Enemy
 
     void Start()
     {
+        currentHealth = maxHealth;
         _gm = FindObjectOfType<GameManager>() as GameManager;
 
         rb = this.GetComponent<Rigidbody2D>();
@@ -55,7 +56,8 @@ public class FlyingEyeController : Enemy
     // Update is called once per frame
     void Update()
     {
-        isDead = true;
+      //  print("VIDA ATUAL DO OLHO"+this.currentHealth);
+       isDead = true;
         if (!isDead)
         {
             if (!meleeAtk)

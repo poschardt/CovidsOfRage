@@ -20,14 +20,28 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("DANO");
+        print("OPA "+other.name);   
         Enemy enemy = other.GetComponent<Enemy>();
         Player2D player = other.GetComponent<Player2D>();
+
         if (enemy != null)
         {
+            print("INIMIGO TOMANDO DANO: "+ damage.ToString());
+
+            if(this.transform.position.x - other.transform.position.x > 0)
+            {
+                other.transform.position = new Vector3(other.transform.position.x - 0.01f, other.transform.position.y, other.transform.position.z);
+            }
+            else
+            {
+                other.transform.position = new Vector3(other.transform.position.x + 0.01f, other.transform.position.y, other.transform.position.z);
+
+            }
+
+
             enemy.TookDamage(damage);
         }
-
+     
         if (player != null)
         {
             player.TookDamage(damage);
