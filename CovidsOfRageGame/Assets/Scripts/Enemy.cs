@@ -28,7 +28,7 @@ namespace Assets.Scripts
             {
                 damaged = true;
                 currentHealth -= damage;
-              //  anim.SetTrigger("HitDamage");
+                anim.SetTrigger("Hitted");
                 FindObjectOfType<UIManager>().UpdateEnemyUI(maxHealth, currentHealth, enemyName, enemyImage);
                 if (currentHealth <= 0)
                 {
