@@ -215,11 +215,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8df3c8fb538de946ae8af3dcc440fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 5
   enemyName: AzitromiGoblin
   enemyImage: {fileID: -6048392498854522608, guid: 52008239dd519c14480ed430ee874385, type: 3}
-  attackRate: 1
-  damageTime: 0.5
+  attackRate: 2
+  damageTime: 0.8
   maxSpeed: 1
 --- !u!1 &6835007473714380835
 GameObject:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042725d6d6adbe74ca877981a8f349c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
   currentDamage: 0
 --- !u!68 &9123492895004824062
 EdgeCollider2D:

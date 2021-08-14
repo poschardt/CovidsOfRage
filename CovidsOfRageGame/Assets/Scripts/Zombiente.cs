@@ -19,6 +19,7 @@ public class Zombiente : Enemy
     private float currentTimeToHeal;
     private bool transformado;
     private float hForce = 0;
+    private GameManager _gm;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,7 @@ public class Zombiente : Enemy
         isDead = false;
         transformado = false;
         currentTimeToHeal = 0;
+        _gm = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -150,6 +152,7 @@ public class Zombiente : Enemy
             {
                 transformado = true;
                 anim.SetTrigger("Healed");
+                _gm.IncrementeVitimaSalva();
             }
 
         }

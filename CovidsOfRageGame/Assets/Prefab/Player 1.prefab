@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1867230414223265662}
   - component: {fileID: 1867230414223265661}
-  - component: {fileID: 1867230414223265660}
   m_Layer: 11
   m_Name: Lantern
   m_TagString: Untagged
@@ -42,24 +41,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.06746451, y: 0.042751044}
   serializedVersion: 2
   m_Radius: 0.5359653
---- !u!114 &1867230414223265660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867230414223265663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ca87398f519534686791301242ea44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7578901157117602359
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042725d6d6adbe74ca877981a8f349c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 5
+  currentDamage: 0
 --- !u!58 &7578901157656085670
 CircleCollider2D:
   m_ObjectHideFlags: 0
