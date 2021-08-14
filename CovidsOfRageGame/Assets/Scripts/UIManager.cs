@@ -42,7 +42,6 @@ namespace Assets
 
             if(phaseComplete)
             {
-                print("CABO A FASE");
                 //SceneManager.LoadScene("");
             }
 
@@ -62,9 +61,7 @@ namespace Assets
 
         public void UpdateEnemyUI(int maxHealth, int currentHealth, string name, Sprite image)
         {
-            print("CHEGUEI");
-            if (image == null)
-                print("IMAGEM NULA");
+
             enemySlider.maxValue = maxHealth;
             enemySlider.value = currentHealth;
             enemyName.text = name;

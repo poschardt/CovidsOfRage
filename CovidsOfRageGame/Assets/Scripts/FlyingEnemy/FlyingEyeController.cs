@@ -56,7 +56,6 @@ public class FlyingEyeController : Enemy
     // Update is called once per frame
     void Update()
     {
-      //  print("VIDA ATUAL DO OLHO"+this.currentHealth);
        isDead = true;
         if (!isDead)
         {

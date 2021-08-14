@@ -19,13 +19,15 @@ namespace Assets.Scripts
 
         public string enemyName;
         public Sprite enemyImage;
-
-
-
+        public float attackRate;
+        public float damageTime;
+        public float maxSpeed;
+        protected Transform target;
         public void TookDamage(int damage)
         {
             if (!isDead)
             {
+                rb.velocity = new Vector2(0, 0);
                 damaged = true;
                 currentHealth -= damage;
                 anim.SetTrigger("Hitted");
@@ -36,6 +38,11 @@ namespace Assets.Scripts
                     rb.AddRelativeForce(new Vector3(3, 5, 0), ForceMode2D.Impulse);
                 }
             }
+        }
+
+        public bool get_isDead()
+        {
+            return isDead;
         }
     }
 
