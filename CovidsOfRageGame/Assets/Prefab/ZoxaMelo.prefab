@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb12d65c23f2574f9382c77e46a0e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   enemyName: ZoxaMelo
   enemyImage: {fileID: 4944230376442633554, guid: 0ed8624363900ae4eb0eed8fda84c19c, type: 3}
   attackRate: 0
