@@ -6,76 +6,109 @@ using UnityEngine;
 
 public class AzitromiGoblin : Enemy
 {
-    public float maxSpeed;
+
     private float currenctSpeed;
     private float walkTimer;
-    public float attackRate = 1f;
-    public float damageTime = 0.5f;
-    private bool facingRight = false;
+    private bool facingRight;
     private float damageTimer;
     private bool OnGround;
-    private bool atacando;
-
-
+    private Vector3 position;
+    private Transform posEsquerda;
+    private Transform posDireita;
+    private float nextAttack;
+    private float hForce;
+    private bool morto = false;
     // Start is called before the first frame update
     void Start()
     {
-        _gm = FindObjectOfType<GameManager>() as GameManager;
-
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
+        rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
+        target = FindObjectOfType<Player2D>().transform;
+
+        posEsquerda = this.transform.parent.transform.GetChild(1);
+        posDireita = this.transform.parent.transform.GetChild(2);
+
+
+        position = posEsquerda.position;
+        facingRight = true;
+        hForce = 0;
+        nextAttack = 0.6f;
     }
 
     // Update is called once per frame
     void Update()
     {
         isDead = currentHealth <= 0;
-        anim.SetBool("Dead", isDead);
-        if (damaged && !isDead)
+
+
+        facingRight = (position.x > this.transform.position.x) ? false : true;
+
+        if (facingRight)
         {
-            damageTimer += Time.deltaTime;
-            if (damageTimer >= damageTime)
-            {
-                damaged = false;
-                damageTimer = 0;
-            }
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-        if (Math.Abs(this.transform.position.x - _gm.Player.transform.position.x) < 1f && !atacando)
-            Atacar();
-
+   
     }
-
-    private void Atacar()
-    {
-        anim.SetTrigger("Attack");
-        atacando = true;
-        StartCoroutine("DelayAtk");
-    }
-
-    IEnumerator DelayAtk()
-    {
-        yield return new WaitForSeconds(attackRate);
-
-        atacando = false;
-    }
-
     void FixedUpdate()
     {
 
         if (!isDead)
         {
-            
+            if (this.transform.position.x <= position.x)
+            {
+                position = posDireita.position;
+                hForce = 1;
+            }
+            else
+            {
+                position = posEsquerda.position;
+                hForce = -1;
+            }
+
+            //  float hForce = position.x / Mathf.Abs(position.x);
+            rb.velocity = new Vector2(hForce * maxSpeed, 0);
+            rb.position = new Vector2(rb.position.x, rb.position.y);
+            anim.SetFloat("Speed", Math.Abs(rb.velocity.x));
+
+
+            if (Mathf.Abs(target.position.x - this.transform.position.x) < 0.7f && Mathf.Abs(target.position.y - this.transform.position.y) < 0.7f && Time.time > nextAttack)
+            {
+                if ((facingRight && this.transform.position.x >= target.position.x) || (!facingRight && this.transform.position.x <= target.position.x))
+                {
+                    anim.SetTrigger("Attack");
+                    rb.velocity = new Vector2(0, 0);
+                    nextAttack = Time.time + attackRate;
+                }
+
+            }
+
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+            anim.SetFloat("Speed", Math.Abs(rb.velocity.x));
+            if(!morto)
+            {
+                anim.SetTrigger("Dead");
+            }
+            morto = true;
         }
         anim.SetBool("onGround", OnGround);
+
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            OnGround = collision.gameObject.layer == LayerMask.NameToLayer("Ground") ? true : false;
-        else
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        OnGround = collision.gameObject.layer == LayerMask.NameToLayer("Ground") ? true : false;
     }
+
+
 }

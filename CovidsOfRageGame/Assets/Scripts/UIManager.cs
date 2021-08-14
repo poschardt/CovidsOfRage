@@ -42,8 +42,7 @@ namespace Assets
 
             if(phaseComplete)
             {
-                //print("CABO A FASE");
-                SceneManager.LoadScene("GameOver");
+                //SceneManager.LoadScene("");
             }
 
             enemyTimer += Time.deltaTime;
@@ -62,9 +61,7 @@ namespace Assets
 
         public void UpdateEnemyUI(int maxHealth, int currentHealth, string name, Sprite image)
         {
-            print("CHEGUEI");
-            if (image == null)
-                print("IMAGEM NULA");
+
             enemySlider.maxValue = maxHealth;
             enemySlider.value = currentHealth;
             enemyName.text = name;
@@ -77,7 +74,7 @@ namespace Assets
         {
             healtCount++;
 
-            if(healtCount > 5)
+            if(healtCount > 0)
             {
                 phaseComplete = true;
             }
