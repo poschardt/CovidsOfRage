@@ -56,7 +56,7 @@ public class FlyingEyeController : Enemy
     // Update is called once per frame
     void Update()
     {
-       isDead = true;
+       //isDead = true;
         if (!isDead)
         {
             if (!meleeAtk)

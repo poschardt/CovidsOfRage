@@ -23,7 +23,7 @@ namespace Assets.Scripts
         public float damageTime;
         public float maxSpeed;
         protected Transform target;
-        public void TookDamage(int damage)
+        public virtual void TookDamage(int damage)
         {
             if (!isDead)
             {

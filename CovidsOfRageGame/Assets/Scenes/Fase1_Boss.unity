@@ -3702,10 +3702,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2be2eecbfc424f49a099555e9240b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 2
+  maxHealth: 20
   enemyName: Ivermec
   enemyImage: {fileID: -7385789195546760866, guid: def7fab9c6c253d4d955a869dd0c85cf, type: 3}
+  attackRate: 0
+  damageTime: 0
+  maxSpeed: 0
   estadoAtual: 4
   delayEstado: 4
   delayTeleporte: 2
@@ -5392,6 +5394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  currentDamage: 0
 --- !u!1 &647164517
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ public class Minion1Controller : Enemy
     [Header("Controle de Tiro")]
     public Transform arma;
     public GameObject tiroPrefab;
-    public float attackRate;
 
     private bool atacando;
     private bool triggerDead;
@@ -20,6 +19,7 @@ public class Minion1Controller : Enemy
     private bool andar;
     private bool andarTimer;
     private bool invertido;
+    private GameManager _gm;
 
     void Start()
     {
