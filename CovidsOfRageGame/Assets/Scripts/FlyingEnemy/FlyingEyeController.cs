@@ -19,8 +19,6 @@ public class FlyingEyeController : Enemy
     private CircleCollider2D shotCollider;
     private CircleCollider2D diveCollider;
 
-    private GameManager _gm;
-
     private bool insideShotRadius;
     private bool insideDashRadius;
 
@@ -57,7 +55,7 @@ public class FlyingEyeController : Enemy
     void Update()
     {
       //  print("VIDA ATUAL DO OLHO"+this.currentHealth);
-       isDead = true;
+       //isDead = true;
         if (!isDead)
         {
             if (!meleeAtk)

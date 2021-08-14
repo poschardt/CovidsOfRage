@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,14 +14,17 @@ public class AzitromiGoblin : Enemy
     private bool facingRight = false;
     private float damageTimer;
     private bool OnGround;
+    private bool atacando;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        _gm = FindObjectOfType<GameManager>() as GameManager;
+
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-
-        
+        anim = GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
@@ -37,7 +41,26 @@ public class AzitromiGoblin : Enemy
                 damageTimer = 0;
             }
         }
+
+        if (Math.Abs(this.transform.position.x - _gm.Player.transform.position.x) < 1f && !atacando)
+            Atacar();
+
     }
+
+    private void Atacar()
+    {
+        anim.SetTrigger("Attack");
+        atacando = true;
+        StartCoroutine("DelayAtk");
+    }
+
+    IEnumerator DelayAtk()
+    {
+        yield return new WaitForSeconds(attackRate);
+
+        atacando = false;
+    }
+
     void FixedUpdate()
     {
 

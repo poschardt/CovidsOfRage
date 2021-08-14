@@ -42,8 +42,8 @@ namespace Assets
 
             if(phaseComplete)
             {
-                print("CABO A FASE");
-                //SceneManager.LoadScene("");
+                //print("CABO A FASE");
+                SceneManager.LoadScene("GameOver");
             }
 
             enemyTimer += Time.deltaTime;
@@ -77,7 +77,7 @@ namespace Assets
         {
             healtCount++;
 
-            if(healtCount > 0)
+            if(healtCount > 5)
             {
                 phaseComplete = true;
             }

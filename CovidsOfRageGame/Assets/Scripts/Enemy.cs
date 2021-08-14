@@ -9,7 +9,7 @@ namespace Assets.Scripts
 {
     public class Enemy : MonoBehaviour
     {
-        protected int currentHealth;
+        public int currentHealth;
         public int maxHealth;
         protected bool isDead = false;
         protected bool damaged = false;
@@ -20,9 +20,9 @@ namespace Assets.Scripts
         public string enemyName;
         public Sprite enemyImage;
 
+        protected GameManager _gm;
 
-
-        public void TookDamage(int damage)
+        public virtual void TookDamage(int damage)
         {
             if (!isDead)
             {
