@@ -483,13 +483,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9588600e778d80e489eed0628274b784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   enemyName: Zombiente
   enemyImage: {fileID: 6019453725058403666, guid: 8cdca006113ec2445959a0cf8f0fbe74, type: 3}
-  attackRate: 0.7
-  damageTime: 0.7
+  attackRate: 3
+  damageTime: 3
   maxSpeed: 0.3
   posEsquerda: {fileID: 5068004084804940232}
   posDireita: {fileID: 5068004084376592431}
-  nextAttack: 1
-  timeToHeal: 5
+  nextAttack: 3
+  timeToHeal: 3

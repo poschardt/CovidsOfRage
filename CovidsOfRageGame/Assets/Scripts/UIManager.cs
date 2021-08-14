@@ -23,14 +23,17 @@ namespace Assets
         public Text enemyName;
         public Image enemyImage;
 
+
         private bool phaseComplete = false;
         private int healtCount = 0;
-
+        private GameManager _gm;
         private float enemyTimer;
+        public Text placar;
         void Start()
         {
             player = FindObjectOfType<Player2D>();
-     
+            _gm = FindObjectOfType<GameManager>();
+
             heathUI.maxValue = player.maxHealth;
             heathUI.value = heathUI.maxValue;
             playerName.text = player.playerName;
@@ -51,6 +54,8 @@ namespace Assets
                 enemyUI.SetActive(false);
                 enemyTimer = 0;
             }
+
+            placar.text = String.Format("Vítimas Salvas : {0}/{1}",_gm.vitimasSalvas,_gm.totalVitimas) ;
         }
 
 
