@@ -2,6 +2,7 @@ using Assets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player2D : MonoBehaviour
 {
@@ -69,6 +70,9 @@ public class Player2D : MonoBehaviour
         }
 
         isDead = currentHealth <= 0 ? true : false;
+
+        if (isDead)
+            SceneManager.LoadScene("GameOver");
 
         //Corrida - Tecla ainda não decidida (Talvez 2x direção seja uma boa)
     }
