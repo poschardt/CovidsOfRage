@@ -1,63 +1,97 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss2Controller : MonoBehaviour
+public class Boss2Controller : Enemy
 {
-    private Rigidbody2D rb;
-    private Animator anim;
 
-    public GameObject player;
+    [Header("Controle Ataque")]
+    public GameObject atkPrefab;
 
-    public float velocidade;
+    [Header("Movimentação")]
+    public float velocidadeMovimento;
+    public GameObject SpotA;
+    public GameObject SpotB;
 
-    [Header("Parâmetro de Ataque")]
-    public float distanciaAtk;
-    public float delayAtk;
-
-    private bool atacando;
-    
-
+    private GameManager _gm;
+    private bool isAttacking;
+    private int destino = 0;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        _gm = FindObjectOfType<GameManager>() as GameManager;
+
+        rb = this.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(velocidade, 0f);
-
-        if(rb.velocity.x != 0)
+        if (!isDead)
         {
-            anim.SetBool("Andando", true);
+            //controle de movimentação
+            #region Movimentação
+
+            ControlemMovimentacao();
+            #endregion
+
+            //controle de ataque
+            #region Atk
+            if (!isAttacking)
+            {
+                Atacar();
+            }
+            #endregion
         }
         else
         {
-            anim.SetBool("Andando", false);
+            anim.SetTrigger("Die");
         }
+    }
 
-
-        float distBossPlayer = Math.Abs(player.transform.position.x - this.transform.position.x);
-
-        //Debug.Log(distBossPlayer);
-
-        if (distBossPlayer < distanciaAtk && !atacando)
+    private void ControlemMovimentacao()
+    {
+        if (destino == 0)
         {
-            anim.SetTrigger("Atk");
-            atacando = true;
-            StartCoroutine("DelayAtk");
-
+            Vector3 posFinalBoss = new Vector3(SpotA.transform.position.x, this.transform.position.y, this.transform.position.z);
+            this.transform.position = Vector3.MoveTowards(this.transform.position, posFinalBoss, velocidadeMovimento * Time.deltaTime);
         }
+        else if (destino == 1)
+        {
+            Vector3 posFinalBoss = new Vector3(SpotB.transform.position.x, this.transform.position.y, this.transform.position.z);
+
+            this.transform.position = Vector3.MoveTowards(this.transform.position, posFinalBoss, velocidadeMovimento * Time.deltaTime);
+        }
+
+
+        if (destino == 0 && (Math.Abs(this.transform.position.x - SpotA.transform.position.x) < 0.1f))
+            destino = 1;
+
+        if (destino == 1 && (Math.Abs(this.transform.position.x - SpotB.transform.position.x) < 0.1f))
+            destino = 0;
+        
+    }
+
+    private void Atacar()
+    {
+        isAttacking = true;
+        anim.SetTrigger("Summon");
+
+        float playerXposition = _gm.Player.transform.position.x;
+
+        GameObject bulletInstance = Instantiate(atkPrefab, new Vector3(playerXposition, 0.7f, 0f), this.transform.localRotation) as GameObject;
+        StartCoroutine("DelayAtk");
+
     }
 
     IEnumerator DelayAtk()
     {
-        yield return new WaitForSeconds(delayAtk);
+        yield return new WaitForSeconds(attackRate);
 
-        atacando = false;
+        isAttacking = false;
     }
 }
