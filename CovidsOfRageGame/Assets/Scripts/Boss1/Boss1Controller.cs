@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum EstadoBoss
 {
@@ -117,6 +118,14 @@ public class Boss1Controller : Enemy
     {
         morrendo = true;
         anim.SetTrigger("Death");
+        StartCoroutine("FimFase");
+    }
+
+    IEnumerator FimFase()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("Fase2");
     }
 
     private void Atacar()
@@ -176,6 +185,7 @@ public class Boss1Controller : Enemy
         this.transform.position = TeleportSpots[num].transform.position;
 
         idxSpotAtual = num;
+        Debug.Log(idxSpotAtual.ToString());
     }
 
     private void InvocarMinions()
