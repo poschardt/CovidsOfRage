@@ -54,7 +54,7 @@ namespace Assets
                 enemyUI.SetActive(false);
                 enemyTimer = 0;
             }
-
+            if(_gm != null && placar != null)
             placar.text = String.Format("Vítimas Salvas : {0}/{1}",_gm.vitimasSalvas,_gm.totalVitimas) ;
         }
 
