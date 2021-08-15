@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Curavel
   - ZoxaMelo
+  - spike
   layers:
   - Default
   - TransparentFX
