@@ -37799,6 +37799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042725d6d6adbe74ca877981a8f349c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &8125644201546466668
 GameObject:
   m_ObjectHideFlags: 0
@@ -38002,3 +38003,7 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 10
   jumpForce: 225
+  currentSpeed: 0
+  maxHealth: 10
+  playerName: 
+  playerImage: {fileID: 0}
