@@ -7,6 +7,6 @@ public class MenuController : MonoBehaviour
 {
     public void Iniciar()
     {
-        SceneManager.LoadScene("Fase1");
+        SceneManager.LoadScene("Introducao");
     }
 }

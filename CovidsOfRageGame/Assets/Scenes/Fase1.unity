@@ -16569,7 +16569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 216}
+  m_AnchoredPosition: {x: 62, y: 73}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433075919
@@ -22613,7 +22613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 7578901158377513032}
-  totalVitimas: 6
+  totalVitimas: 3
   vitimasSalvas: 0
 --- !u!4 &960973516
 Transform:
@@ -34137,6 +34137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gm: {fileID: 0}
+  fase: 0
 --- !u!61 &1431070030
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ public class Saida : MonoBehaviour
         {
             if(_gm.totalVitimas == _gm.vitimasSalvas)
             {
-                SceneManager.LoadScene(Enum.GetName(typeof(Fases),this.fases[((int)this.fase)+ 1])) ;
+                SceneManager.LoadScene(Enum.GetName(typeof(Fases),this.fases[((int)this.fase)+ 1]));
             }
         }
     }

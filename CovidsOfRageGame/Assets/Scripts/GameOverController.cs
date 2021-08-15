@@ -7,6 +7,6 @@ public class GameOverController : MonoBehaviour
 {
     public void PlayAgain()
     {
-        SceneManager.LoadScene("Fase1");
+        SceneManager.LoadScene("Menu");
     }
 }
