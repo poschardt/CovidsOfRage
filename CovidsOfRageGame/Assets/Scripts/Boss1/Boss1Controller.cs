@@ -220,7 +220,6 @@ public class Boss1Controller : Enemy
 
     public override void TookDamage(int damage)
     {
-        Debug.Log("Custom hihi");
         if (!isDead)
         {
             damaged = true;
