@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5068004085293059402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd69911c330a66641a939992089639fa, type: 3}
+  m_Script: {fileID: 11500000, guid: b6880d25b2fad7645a8d056cc97d4a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   zombie: {fileID: 5068004085293059401}
@@ -480,16 +480,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7355171744601793402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9588600e778d80e489eed0628274b784, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ac0941896a80cb4bbc730e5478b5784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  enemyName: Zombiente
-  enemyImage: {fileID: 6019453725058403666, guid: 8cdca006113ec2445959a0cf8f0fbe74, type: 3}
+  characterName: Zombiente
+  characterImage: {fileID: 6019453725058403666, guid: 8cdca006113ec2445959a0cf8f0fbe74, type: 3}
+  maxHealth: 10
+  walkSpeed: 0.5
+  runSpeed: 0.5
+  jumpForce: 0
   attackRate: 3
-  damageTime: 3
-  maxSpeed: 0.3
   posEsquerda: {fileID: 5068004084804940232}
   posDireita: {fileID: 5068004084376592431}
-  nextAttack: 3
   timeToHeal: 3

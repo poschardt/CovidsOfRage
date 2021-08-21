@@ -203,13 +203,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7102fa19134bea4e80cbd36767e99ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Alita
+  characterImage: {fileID: 3139320504706381072, guid: be3da3055846add4883f604c1a49af6f, type: 3}
+  maxHealth: 10
   walkSpeed: 3
   runSpeed: 10
   jumpForce: 225
-  currentSpeed: 0
-  maxHealth: 10
-  playerName: Alita
-  playerImage: {fileID: 5589159432343110878, guid: be3da3055846add4883f604c1a49af6f, type: 3}
 --- !u!1 &7578901157656085671
 GameObject:
   m_ObjectHideFlags: 0

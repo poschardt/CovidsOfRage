@@ -215,12 +215,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8df3c8fb538de946ae8af3dcc440fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: AzitromiGoblin
+  characterImage: {fileID: -3236675104909177313, guid: 52008239dd519c14480ed430ee874385, type: 3}
   maxHealth: 5
-  enemyName: AzitromiGoblin
-  enemyImage: {fileID: -6048392498854522608, guid: 52008239dd519c14480ed430ee874385, type: 3}
+  walkSpeed: 1
+  runSpeed: 1
+  jumpForce: 0
   attackRate: 2
-  damageTime: 0.8
-  maxSpeed: 1
+  posEsquerda: {fileID: 6835007473527131590}
+  posDireita: {fileID: 6835007472789747296}
 --- !u!1 &6835007473714380835
 GameObject:
   m_ObjectHideFlags: 0
