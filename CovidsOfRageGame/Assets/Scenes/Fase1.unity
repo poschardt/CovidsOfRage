@@ -39631,6 +39631,18 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2099890816}
+    - target: {fileID: 2538259714596525777, guid: 13d2a23e0e20ad6458ecd66487a9e47d, type: 3}
+      propertyPath: nextStage_name
+      value: Fase2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538259714596525777, guid: 13d2a23e0e20ad6458ecd66487a9e47d, type: 3}
+      propertyPath: currentStage_name
+      value: Fase1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538259714596525777, guid: 13d2a23e0e20ad6458ecd66487a9e47d, type: 3}
+      propertyPath: pessoasSalvas_Minimo
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2538259714686907058, guid: 13d2a23e0e20ad6458ecd66487a9e47d, type: 3}
       propertyPath: m_Name
       value: Canvas
