@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
+
+    public enum EnumBoolean
+    {
+        Verdadeiro,
+        Falso
+    }
    public static class EnumerableExtension
    {
         public static T PickRandom<T>(this IEnumerable<T> source)

@@ -34,7 +34,6 @@ public class Boss1Controller : Enemy
     private bool atacando;
     private bool morrendo;
     private int idxSpotAtual;
-    private StageManager _gm;
 
     // Start is called before the first frame update
     void Start()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 217284261675483690}
   - component: {fileID: 217284261675483689}
   - component: {fileID: 217284261675483688}
-  - component: {fileID: 217284261675483703}
+  - component: {fileID: 6122798548862064290}
   m_Layer: 0
   m_Name: ZoxaMelo
   m_TagString: Untagged
@@ -101,7 +101,7 @@ CircleCollider2D:
   m_Offset: {x: -0.015222083, y: 0.015792632}
   serializedVersion: 2
   m_Radius: 0.4695559
---- !u!114 &217284261675483703
+--- !u!114 &6122798548862064290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 217284261675483691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c3c248c4fc57345a5af831b1db4fa7, type: 3}
+  m_Script: {fileID: 11500000, guid: 03eefd9f9cb918f4bafca57af60c8df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &217284262180584916
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 217284262180584914}
   - component: {fileID: 217284262180584927}
   - component: {fileID: 217284262180584912}
-  - component: {fileID: 217284262180584926}
+  - component: {fileID: 4052037577652482636}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: ZoxaMelo
@@ -255,7 +255,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &217284262180584926
+--- !u!114 &4052037577652482636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,12 +264,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 217284262180584916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb12d65c23f2574f9382c77e46a0e54, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ddbfe758fccbed499115caf52957450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  enemyName: ZoxaMelo
-  enemyImage: {fileID: 4944230376442633554, guid: 0ed8624363900ae4eb0eed8fda84c19c, type: 3}
+  characterName: ZoxoMelo
+  characterImage: {fileID: -2274363484027164459, guid: 0ed8624363900ae4eb0eed8fda84c19c, type: 3}
+  maxHealth: 10
+  walkSpeed: 0
+  runSpeed: 0
+  jumpForce: 0
+  attack: {fileID: 0}
   attackRate: 0
-  damageTime: 0
-  maxSpeed: 0

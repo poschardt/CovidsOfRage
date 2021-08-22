@@ -54,9 +54,7 @@ public class PlataformaController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.transform.name);
         var personagem = collision.gameObject.GetComponent<Personagem>();
-
         if(personagem != null)
         {
             print(collision.transform.name);
@@ -67,10 +65,8 @@ public class PlataformaController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        print(collision.transform.name);
 
         var personagem = collision.gameObject.GetComponent<Personagem>();
-
         if (personagem != null)
         {
             print(collision.transform.name);

@@ -13,22 +13,35 @@ public class Player2D : Personagem
     private bool healing = false;
     private float xAxis;
 
+    [Header("KnockBack stuff")]
+    public float thrust;
+    public float minimumYthrust;
+    public float knockbackTime;
+
+    [Header("Flash stuff")]
+    public int numberOfFlashses;
+    public float flashDuration;
+    public SpriteRenderer sprite;
+    public Color flashColor;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        attack = gameObject.transform.GetComponentInChildren<Attack>();
+        //attack = gameObject.transform.Find("Attack").gameObject;
         currentHealth = maxHealth;
         currentSpeed = walkSpeed;
         facingRight = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //Direction
-        xAxis = Input.GetAxis("Horizontal");
+        xAxis = Input.GetAxisRaw("Horizontal");
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && OnGround)
         {
@@ -58,7 +71,6 @@ public class Player2D : Personagem
         //Isso tem que ser decidido no UIManager
         if (isDead)
             SceneManager.LoadScene("GameOver");
-
     }
 
     void FixedUpdate()
@@ -84,9 +96,11 @@ public class Player2D : Personagem
 
 
             //Movimentação do personagem 
-            if (!healing)
-                rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y, 0);
-            else
+
+            if (!healing && !knocking)
+               // rb.MovePosition((Vector2)transform.position + change * this.currentSpeed * Time.deltaTime);
+               rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y, 0);
+            else if(!knocking)
                 rb.velocity = new Vector3(0, rb.velocity.y, 0);
 
             //Caso estiver no  chao, ativar animação de velocidade 
@@ -101,32 +115,37 @@ public class Player2D : Personagem
 
     }
 
-    //public void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-    //        OnGround = collision.gameObject.layer == LayerMask.NameToLayer("Ground") ? true : false;
-    //    else
-    //        rb.velocity = new Vector3(0, rb.velocity.y, 0);
-    //}
-  
-    //public void Flip()
-    //{
-    //    facingRight = !facingRight;
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (LayerMask.LayerToName(other.gameObject.layer))
+        {
+            case "EnemyHit":
+                StartCoroutine(this.Flash(numberOfFlashses, flashDuration, sprite, flashColor));
+                knocking = true;
 
-    //    Vector3 scale = transform.localScale;
-    //    scale.x *= -1;
+               StartCoroutine(this.KnockBack(knockbackTime));
 
-    //    transform.localScale = scale;
-    //}
+                Vector2 difference = other.transform.position - this.transform.position;
+                difference = difference.normalized * thrust;
+                difference.x = -difference.x;
+                if (difference.y - this.transform.position.y <= 0f)
+                    difference.y = minimumYthrust;
+                this.rb.velocity = Vector2.zero;
+                this.rb.AddForce(difference, ForceMode2D.Impulse);
+                break;
+        }
+    }
 
-    //public void TookDamage(int damage)
-    //{
-    //    if (!isDead)
-    //    {
-    //        currentHealth -= damage;
-    //        //    anim.SetTrigger("HitDamage");
-    //        FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
-    //    }
-    //}
+    public override void TookDamage(int damage)
+    {
+        if (!isDead)
+        {
+            currentHealth -= damage;
+
+            FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
+
+        }
+    }
+
 
 }

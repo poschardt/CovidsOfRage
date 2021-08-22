@@ -23,7 +23,7 @@ public class Zombiente : Enemy
         _gm = FindObjectOfType<StageManager>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        attack = gameObject.transform.GetComponentInChildren<Attack>();
+        attack = gameObject.transform.Find("Attack").gameObject;
         vitima = this.transform.parent.transform.GetChild(1);
         currentHealth = maxHealth;
         position = posEsquerda.position;
@@ -32,6 +32,8 @@ public class Zombiente : Enemy
         isDead = false;
         transformado = false;
         currentTimeToHeal = 0;
+    
+
     }
 
     // Update is called once per frame

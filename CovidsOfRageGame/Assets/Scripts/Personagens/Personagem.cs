@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Utils;
 
 namespace Assets.Scripts.Personagem
 {
@@ -19,7 +21,7 @@ namespace Assets.Scripts.Personagem
         [Header("Character Info")]
         public string characterName;
         public Sprite characterImage;
-
+        public bool knocking = false;
 
         [Header("Chracter Attribute")]
         public int maxHealth = 10;
@@ -29,17 +31,11 @@ namespace Assets.Scripts.Personagem
         protected float currentSpeed;
         protected int currentHealth;
         protected bool isDead;
-        protected Attack attack;
+        public GameObject attack;
 
 
-        public virtual void TookDamage(int damage)
-        {
-            if (!isDead)
-            {
-                currentHealth -= damage;
-                FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
-            }
-        }
+        public abstract void TookDamage(int damage);
+      
         public virtual void OnCollisionEnter2D(Collision2D collision)
         {
             switch(LayerMask.LayerToName(collision.gameObject.layer))
@@ -80,5 +76,43 @@ namespace Assets.Scripts.Personagem
         {
             return isDead;
         }
+
+        protected IEnumerator KnockBack(float knockTime)
+        {
+            if(rb != null)
+            {
+                yield return new WaitForSeconds(knockTime);
+                knocking = false;
+
+                rb.velocity = Vector2.zero;
+            }
+        }
+
+        protected IEnumerator Flash(int numberOfFlashes,float flashDuration, SpriteRenderer sprite, Color flashColor)
+        {
+            int temp = 0;
+            int defaultLayer = this.gameObject.layer;
+            this.gameObject.layer = LayerMask.NameToLayer("Invulneravel");
+            while(temp < numberOfFlashes)
+            {
+                sprite.color = flashColor;
+                yield return new WaitForSeconds(flashDuration);
+                sprite.color = Color.white;
+                yield return new WaitForSeconds(flashDuration);
+                temp++;
+            }
+            this.gameObject.layer = defaultLayer;
+        }
+ 
+
+        public virtual void Atk(EnumBoolean valor)
+        {
+           if(valor == EnumBoolean.Verdadeiro)
+                this.attack.gameObject.SetActive(true);
+           else
+                this.attack.gameObject.SetActive(false);
+
+        }
+
     }
 }

@@ -14,26 +14,16 @@ public class Attack : MonoBehaviour
         currentDamage = damage;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IPersonagem characterHitted = other.GetComponent<IPersonagem>();
+        Personagem characterHitted = other.GetComponent<Personagem>();
         if (characterHitted != null)
         {
+
             characterHitted.TookDamage(currentDamage);
-            //if(this.transform.position.x - other.transform.position.x > 0)
-            //{
-            //    other.transform.position = new Vector3(other.transform.position.x - 0.01f, other.transform.position.y, other.transform.position.z);
-            //}
-            //else
-            //{
-            //    other.transform.position = new Vector3(other.transform.position.x + 0.01f, other.transform.position.y, other.transform.position.z);
-            //}
+
         }
     }
 

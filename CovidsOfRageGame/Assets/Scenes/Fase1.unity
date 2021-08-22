@@ -18671,7 +18671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5068004085293059400, guid: 54fb59608418a1d45bffc4df4639c204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.87
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 5068004085293059400, guid: 54fb59608418a1d45bffc4df4639c204, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18708,6 +18708,10 @@ PrefabInstance:
     - target: {fileID: 5068004085293059402, guid: 54fb59608418a1d45bffc4df4639c204, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7355171744601793401, guid: 54fb59608418a1d45bffc4df4639c204, type: 3}
+      propertyPath: characterBlockerCollider
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54fb59608418a1d45bffc4df4639c204, type: 3}
@@ -20390,7 +20394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789652746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.32, y: 11.49, z: -10.85}
+  m_LocalPosition: {x: -2.26, y: 2.33, z: -10.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36359,7 +36363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765668450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.32, y: 11.49, z: -10.85}
+  m_LocalPosition: {x: -2.26, y: 2.33, z: -10.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1231138985}
@@ -39043,11 +39047,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7578901157117602357, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.32
+      value: -2.26
       objectReference: {fileID: 0}
     - target: {fileID: 7578901157117602357, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.63
+      value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: 7578901157117602357, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39081,9 +39085,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117602358, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 589f47c42a485754d92889510aa91505, type: 2}
     - target: {fileID: 7578901157117602359, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117602360, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: thrust
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: flashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: knockbackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: minimumYthrust
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: numberOfFlashses
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
@@ -39631,6 +39663,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2099890816}
+    - target: {fileID: 2538259714596525777, guid: 13d2a23e0e20ad6458ecd66487a9e47d, type: 3}
+      propertyPath: deadLine
+      value: 
+      objectReference: {fileID: 1458389451}
     - target: {fileID: 2538259714596525777, guid: 13d2a23e0e20ad6458ecd66487a9e47d, type: 3}
       propertyPath: nextStage_name
       value: Fase2

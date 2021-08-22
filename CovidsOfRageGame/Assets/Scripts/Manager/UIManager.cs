@@ -35,7 +35,7 @@ namespace Assets
         public Text placar;
         void Start()
         {
-            player = FindObjectOfType<Player2D>();
+            player = _gm.Player.GetComponent<Player2D>();
 
             heathUI.maxValue = player.maxHealth;
             heathUI.value = heathUI.maxValue;

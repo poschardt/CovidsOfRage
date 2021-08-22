@@ -221,6 +221,7 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 1
   jumpForce: 0
+  attack: {fileID: 9123492895004824056}
   attackRate: 2
   posEsquerda: {fileID: 6835007473527131590}
   posDireita: {fileID: 6835007472789747296}

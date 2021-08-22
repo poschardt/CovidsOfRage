@@ -13,6 +13,15 @@ namespace Assets.Scripts
         protected float nextAttack;
         protected bool damaged;
         protected StageManager _gm;
+
+        public override void TookDamage(int damage)
+        {
+            if (!isDead)
+            {
+                currentHealth -= damage;
+                 FindObjectOfType<UIManager>().UpdateEnemyUI(maxHealth, currentHealth, characterName, characterImage);
+            }
+        }
     }
 
 }
