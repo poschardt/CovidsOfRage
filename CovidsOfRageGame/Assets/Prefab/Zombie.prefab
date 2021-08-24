@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3448555197606586121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8957060959389807298}
+  - component: {fileID: 1841475096995038543}
+  - component: {fileID: 665001603868268648}
+  m_Layer: 10
+  m_Name: AttackBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8957060959389807298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448555197606586121}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.06613684, z: 0}
+  m_LocalScale: {x: 0.9638553, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7355171744601793380}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1841475096995038543
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448555197606586121}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01879369, y: -0.056120276}
+  m_Size: {x: 0.2546723, y: 0.38305545}
+  m_Direction: 0
+--- !u!114 &665001603868268648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448555197606586121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042725d6d6adbe74ca877981a8f349c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  currentDamage: 0
 --- !u!1 &5068004084376592416
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +423,7 @@ Transform:
   m_LocalScale: {x: 1.0375, y: 1, z: 1}
   m_Children:
   - {fileID: 5068004084596511306}
+  - {fileID: 8957060959389807298}
   m_Father: {fileID: 5068004085293059400}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -449,8 +512,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02627635, y: 0}
-  m_Size: {x: 0.23970652, y: 0.37557274}
+  m_Offset: {x: -0.029882666, y: 0}
+  m_Size: {x: 0.23249389, y: 0.37557274}
   m_Direction: 0
 --- !u!95 &5068004084693168945
 Animator:
@@ -485,6 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Zombiente
   characterImage: {fileID: 6019453725058403666, guid: 8cdca006113ec2445959a0cf8f0fbe74, type: 3}
+  knocking: 0
   maxHealth: 10
   walkSpeed: 0.5
   runSpeed: 0.5

@@ -4,11 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class Player2D : Personagem
 {
 
-
+    public GameObject attack2;
     //Propriedade que verifica se Alita está curando ou não
     private bool healing = false;
     private float xAxis;
@@ -25,16 +26,23 @@ public class Player2D : Personagem
     public Color flashColor;
 
 
+    [Header("Dash")]
+    public bool dashing;
+    public float dashDuration;
+    private float doubleTapTime;
+    public float doubleTap;
+    public float dashForce;
+    KeyCode lastKeyCode;
+    KeyCode currentKeyCode;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        //attack = gameObject.transform.Find("Attack").gameObject;
         currentHealth = maxHealth;
         currentSpeed = walkSpeed;
         facingRight = true;
-
+        dashing = false;
     }
 
     // Update is called once per frame
@@ -42,6 +50,38 @@ public class Player2D : Personagem
     {
         //Direction
         xAxis = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.LeftArrow)
+            {
+                if (!knocking)
+                    if(!dashing)
+                    StartCoroutine(Dash(-1f));
+            }
+            else
+            {
+                doubleTapTime = Time.time + doubleTap;
+            }
+            lastKeyCode = KeyCode.LeftArrow;
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.RightArrow)
+            {
+                if (!knocking)
+                    if (!dashing)
+                        StartCoroutine(Dash(1f));
+
+            }
+            else
+            {
+                doubleTapTime = Time.time + doubleTap;
+            }
+            lastKeyCode = KeyCode.RightArrow;
+        }
+
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && OnGround)
         {
@@ -96,11 +136,13 @@ public class Player2D : Personagem
 
 
             //Movimentação do personagem 
-
             if (!healing && !knocking)
-               // rb.MovePosition((Vector2)transform.position + change * this.currentSpeed * Time.deltaTime);
-               rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y, 0);
-            else if(!knocking)
+            {
+                if (!dashing)
+                    rb.velocity = new Vector3(xAxis * currentSpeed, rb.velocity.y, 0);
+
+            }
+            else if (!knocking)//Essa verificação é necessaria pois pode interferir no knockback
                 rb.velocity = new Vector3(0, rb.velocity.y, 0);
 
             //Caso estiver no  chao, ativar animação de velocidade 
@@ -111,6 +153,7 @@ public class Player2D : Personagem
 
             animator.SetBool("onGround", OnGround);
             animator.SetFloat("ySpeed", rb.velocity.y);
+
         }
 
     }
@@ -123,8 +166,9 @@ public class Player2D : Personagem
                 StartCoroutine(this.Flash(numberOfFlashses, flashDuration, sprite, flashColor));
                 knocking = true;
 
-               StartCoroutine(this.KnockBack(knockbackTime));
+                StartCoroutine(this.KnockBack(knockbackTime));
 
+                //Calculando KnockBack
                 Vector2 difference = other.transform.position - this.transform.position;
                 difference = difference.normalized * thrust;
                 difference.x = -difference.x;
@@ -136,6 +180,7 @@ public class Player2D : Personagem
         }
     }
 
+
     public override void TookDamage(int damage)
     {
         if (!isDead)
@@ -145,6 +190,35 @@ public class Player2D : Personagem
             FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
 
         }
+    }
+
+    public virtual void Atk2(EnumBoolean valor)
+    {
+        if (valor == EnumBoolean.Verdadeiro)
+            this.attack2.gameObject.SetActive(true);
+        else
+            this.attack2.gameObject.SetActive(false);
+
+    }
+
+    protected IEnumerator Dash(float direction)
+    {
+        dashing = true;
+        animator.SetTrigger("Dashing");
+
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.AddForce(new Vector2(4 * direction, 0f), ForceMode2D.Impulse);
+        int defaultLayer = this.gameObject.layer;
+        this.gameObject.layer = LayerMask.NameToLayer("Invulneravel");
+        // float gravity = rb.gravityScale;
+        //  rb.gravityScale = 0;
+        yield return new WaitForSeconds(dashDuration);
+        this.gameObject.layer = defaultLayer;
+        dashing = false;
+       // rb.gravityScale = gravity;
+        //  dashing = false;
+        // animator.SetBool("Dashing", dashing);
+
     }
 
 

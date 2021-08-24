@@ -14080,6 +14080,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AzitromiGoblin
       objectReference: {fileID: 0}
+    - target: {fileID: 8285212634619780374, guid: 9e6f8efdb64814144a32befc7b388a2f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285212634619780374, guid: 9e6f8efdb64814144a32befc7b388a2f, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9123492895463898464, guid: 9e6f8efdb64814144a32befc7b388a2f, type: 3}
       propertyPath: runSpeed
       value: 1
@@ -39085,37 +39093,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7578901157117602358, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 589f47c42a485754d92889510aa91505, type: 2}
     - target: {fileID: 7578901157117602359, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7578901157117602360, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
-      propertyPath: m_ApplyRootMotion
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: runSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: dashForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: doubleTap
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: dashDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: flashColor.b
+      value: 0.07440368
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: flashColor.g
+      value: 0.07440368
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: flashColor.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
+      propertyPath: doubleTapTime
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
-      propertyPath: thrust
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
-      propertyPath: flashDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
-      propertyPath: knockbackTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
-      propertyPath: minimumYthrust
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578901157117603274, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
-      propertyPath: numberOfFlashses
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8ca73dbf74d8274fbea4659fec9b7ed, type: 3}
