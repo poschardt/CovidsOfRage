@@ -219,12 +219,14 @@ MonoBehaviour:
   characterName: AzitromiGoblin
   characterImage: {fileID: -3236675104909177313, guid: 52008239dd519c14480ed430ee874385, type: 3}
   knocking: 0
-  maxHealth: 5
+  maxHealth: 10
   walkSpeed: 1
   runSpeed: 1
   jumpForce: 0
   attack: {fileID: 9123492895004824056}
   attackRate: 2
+  canWalk: 1
+  stopWalkTime: 2
   posEsquerda: {fileID: 6835007473527131590}
   posDireita: {fileID: 6835007472789747296}
 --- !u!1 &6835007473714380835
@@ -302,11 +304,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02627635, y: 0.0033355802}
-  m_Size: {x: 0.23970652, y: 0.3822439}
+  m_Offset: {x: 0.026399724, y: 0.0033355802}
+  m_Size: {x: 0.13435437, y: 0.3822439}
   m_Direction: 0
 --- !u!114 &3669744395486190939
 MonoBehaviour:

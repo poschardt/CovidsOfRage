@@ -83,7 +83,7 @@ public class Player2D : Personagem
         }
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && OnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && OnGround && !dashing)
         {
             jump = true;
         }
@@ -210,12 +210,12 @@ public class Player2D : Personagem
         rb.AddForce(new Vector2(4 * direction, 0f), ForceMode2D.Impulse);
         int defaultLayer = this.gameObject.layer;
         this.gameObject.layer = LayerMask.NameToLayer("Invulneravel");
-        // float gravity = rb.gravityScale;
-        //  rb.gravityScale = 0;
+        float gravity = rb.gravityScale;
+        rb.gravityScale = 0.1f;
         yield return new WaitForSeconds(dashDuration);
         this.gameObject.layer = defaultLayer;
         dashing = false;
-       // rb.gravityScale = gravity;
+        rb.gravityScale = gravity;
         //  dashing = false;
         // animator.SetBool("Dashing", dashing);
 

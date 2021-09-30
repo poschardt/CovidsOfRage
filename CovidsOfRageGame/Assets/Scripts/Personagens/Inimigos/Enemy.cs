@@ -14,6 +14,8 @@ namespace Assets.Scripts
         protected bool damaged;
         protected StageManager _gm;
 
+        public bool canWalk;
+        public float stopWalkTime;
         public override void TookDamage(int damage)
         {
             if (!isDead)

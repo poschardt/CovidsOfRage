@@ -25,6 +25,7 @@ public class AzitromiGoblin : Enemy
         facingRight = true;
         hForce = 0;
         nextAttack = 0.6f;
+
     }
 
     // Update is called once per frame
@@ -44,7 +45,6 @@ public class AzitromiGoblin : Enemy
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-   
     }
 
     void FixedUpdate()
@@ -52,39 +52,46 @@ public class AzitromiGoblin : Enemy
 
         if (!isDead)
         {
-            if (this.transform.position.x <= position.x)
+
+            if (canWalk)
             {
-                position = posDireita.position;
-                hForce = 1;
+
+                if (this.transform.position.x <= position.x)
+                {
+                    position = posDireita.position;
+                    hForce = 1;
+                }
+                else
+                {
+                    position = posEsquerda.position;
+                    hForce = -1;
+                }
+
+                rb.velocity = new Vector2(hForce * runSpeed, 0);
+                rb.position = new Vector2(rb.position.x, rb.position.y);
             }
-            else
-            {
-                position = posEsquerda.position;
-                hForce = -1;
-            }
-
-            rb.velocity = new Vector2(hForce * runSpeed, 0);
-            rb.position = new Vector2(rb.position.x, rb.position.y);
-            animator.SetFloat("Speed", Math.Abs(rb.velocity.x));
 
 
-            if (Mathf.Abs(_gm.Player.transform.position.x - this.transform.position.x) < 0.7f && Mathf.Abs(_gm.Player.transform.position.y - this.transform.position.y) < 0.7f && Time.time > nextAttack)
+            if (Mathf.Abs(_gm.Player.transform.position.x - this.transform.position.x) < 0.65f && Mathf.Abs(_gm.Player.transform.position.y - this.transform.position.y) < 0.65f && Time.time > nextAttack)
             {
                 if ((facingRight && this.transform.position.x >= _gm.Player.transform.position.x) || (!facingRight && this.transform.position.x <= _gm.Player.transform.position.x))
                 {
+                    StartCoroutine("stopWalk");
+
                     animator.SetTrigger("Attack");
                     rb.velocity = new Vector2(0, 0);
                     nextAttack = Time.time + attackRate;
                 }
 
             }
+            animator.SetFloat("Speed", Math.Abs(rb.velocity.x));
 
         }
         else
         {
             rb.velocity = new Vector2(0, 0);
             animator.SetFloat("Speed", Math.Abs(rb.velocity.x));
-            if(!morto)
+            if (!morto)
             {
                 animator.SetTrigger("Dead");
             }
@@ -92,6 +99,15 @@ public class AzitromiGoblin : Enemy
         }
         animator.SetBool("onGround", OnGround);
 
+    }
+
+
+    IEnumerator stopWalk()
+    {
+        canWalk = false;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(stopWalkTime);
+        canWalk = true;
     }
 
 

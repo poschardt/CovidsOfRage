@@ -37,12 +37,23 @@ public class ZoxaMelo : Enemy
     {
         if(!isDead)
         {
+            if (Mathf.Abs(_gm.Player.transform.position.x - this.transform.position.x) < 0.65f && Mathf.Abs(_gm.Player.transform.position.y - this.transform.position.y) < 0.65f && Time.time > nextAttack)
+            {
+                if ((facingRight && this.transform.position.x >= _gm.Player.transform.position.x) || (!facingRight && this.transform.position.x <= _gm.Player.transform.position.x))
+                {
 
+                    animator.SetTrigger("Attack");
+                    nextAttack = Time.time + attackRate;
+                }
+
+            }
         }
         else
         {
             animator.SetTrigger("Dead");
         }
     }
+
+
 
 }
